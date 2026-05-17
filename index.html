@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sambalpur — Soul of Western Odisha</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --saffron: #E8691A;
+    --gold: #D4A017;
+    --deep: #1A0F00;
+    --warm: #FDF3E3;
+    --rust: #8B2500;
+    --teal: #1A5C5C;
+    --cream: #F5E6C8;
+    --shadow: rgba(26,15,0,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--warm);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: linear-gradient(to bottom, rgba(26,15,0,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; letter-spacing: 4px;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--cream); text-decoration: none;
+    font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 1px;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ===== HERO ===== */
+  .hero {
+    height: 100vh; position: relative;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 80px 60px;
+    background:
+      linear-gradient(160deg, rgba(26,15,0,0.2) 0%, rgba(26,15,0,0.75) 70%),
+      url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Hirakud_dam_sunset.jpg/1280px-Hirakud_dam_sunset.jpg')
+      center/cover no-repeat;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(232,105,26,0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem; letter-spacing: 8px; color: var(--gold);
+    margin-bottom: 16px;
+    animation: fadeUp .8s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900; line-height: 1.0;
+    color: #fff;
+    max-width: 800px;
+    animation: fadeUp .9s .1s ease both;
+  }
+  .hero-title span { color: var(--saffron); font-style: italic; }
+  .hero-sub {
+    margin-top: 20px; max-width: 560px;
+    font-size: 1.2rem; font-weight: 300; line-height: 1.7;
+    color: rgba(255,255,255,0.82);
+    animation: fadeUp 1s .2s ease both;
+  }
+  .hero-cta {
+    margin-top: 36px;
+    display: inline-block; padding: 14px 38px;
+    background: var(--saffron); color: #fff;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 3px;
+    text-decoration: none; border-radius: 2px;
+    transition: background .3s, transform .3s;
+    animation: fadeUp 1s .3s ease both;
+  }
+  .hero-cta:hover { background: var(--rust); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 36px; right: 60px;
+    writing-mode: vertical-rl; letter-spacing: 4px;
+    font-size: .8rem; color: rgba(255,255,255,0.5);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-scroll::after {
+    content: ''; display: block;
+    width: 1px; height: 60px; background: rgba(255,255,255,0.3);
+    animation: scrollLine 1.5s ease infinite;
+  }
+
+  /* ===== SECTION COMMONS ===== */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: .9rem; letter-spacing: 6px; color: var(--saffron);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 56px;
+  }
+  .section-title em { color: var(--gold); font-style: italic; }
+
+  /* ===== ABOUT STRIP ===== */
+  .about-strip {
+    background: var(--cream); color: var(--deep);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-text p { line-height: 1.9; font-size: 1.05rem; margin-bottom: 16px; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .stat-box {
+    border-left: 3px solid var(--saffron);
+    padding-left: 20px;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem; color: var(--rust); line-height: 1;
+  }
+  .stat-label { font-size: .9rem; color: var(--deep); letter-spacing: 1px; margin-top: 4px; }
+
+  /* ===== DESTINATIONS ===== */
+  .destinations { background: var(--deep); }
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .dest-card {
+    position: relative; overflow: hidden;
+    border-radius: 4px; cursor: pointer;
+    aspect-ratio: 3/4;
+    transition: transform .4s;
+  }
+  .dest-card:hover { transform: translateY(-8px); }
+  .dest-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(.75);
+    transition: filter .4s, transform .4s;
+  }
+  .dest-card:hover img { filter: brightness(.9); transform: scale(1.04); }
+  .dest-num {
+    position: absolute; top: 18px; left: 18px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem; color: rgba(255,255,255,0.15); line-height: 1;
+  }
+  .dest-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 24px 20px;
+    background: linear-gradient(to top, rgba(26,15,0,0.92) 0%, transparent 100%);
+  }
+  .dest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; color: #fff;
+  }
+  .dest-tag {
+    display: inline-block; margin-top: 6px;
+    padding: 3px 10px; background: var(--saffron);
+    font-size: .75rem; letter-spacing: 1px; color: #fff; border-radius: 2px;
+  }
+  .dest-desc { margin-top: 8px; font-size: .9rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+  /* ===== HOTELS ===== */
+  .hotels { background: #120A00; }
+  .hotel-list { display: flex; flex-direction: column; gap: 0; }
+  .hotel-row {
+    display: grid; grid-template-columns: 60px 1fr auto;
+    align-items: center; gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: background .3s;
+    cursor: default;
+  }
+  .hotel-row:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+  .hotel-row:hover { background: rgba(232,105,26,0.06); }
+  .hotel-rank {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem; color: var(--saffron); opacity: .4;
+    text-align: center;
+  }
+  .hotel-main .hotel-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 600;
+  }
+  .hotel-main .hotel-addr {
+    font-size: .9rem; color: rgba(255,255,255,0.45); margin-top: 4px;
+  }
+  .hotel-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+  .hotel-type {
+    font-size: .8rem; letter-spacing: 1px; color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+  }
+  .hotel-right { text-align: right; }
+
+  /* ===== FOOD ===== */
+  .food { background: var(--cream); color: var(--deep); }
+  .food-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .food-card {
+    background: #fff;
+    border-radius: 4px; padding: 28px 22px;
+    border-top: 4px solid var(--saffron);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .food-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+  .food-icon { font-size: 2.2rem; margin-bottom: 12px; }
+  .food-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+  .food-desc { font-size: .9rem; margin-top: 8px; line-height: 1.6; color: #555; }
+
+  /* ===== FESTIVALS ===== */
+  .festivals { background: var(--deep); }
+  .fest-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .fest-card {
+    position: relative;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px; padding: 32px 28px;
+    overflow: hidden;
+    transition: border-color .3s;
+  }
+  .fest-card:hover { border-color: var(--gold); }
+  .fest-card::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle at top right, rgba(212,160,23,0.15), transparent 70%);
+  }
+  .fest-month {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: .85rem; letter-spacing: 4px; color: var(--saffron);
+  }
+  .fest-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 8px; }
+  .fest-desc { font-size: .9rem; line-height: 1.7; margin-top: 12px; color: rgba(255,255,255,0.6); }
+
+  /* ===== ARTS ===== */
+  .arts { background: var(--rust); }
+  .arts-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .art-tile {
+    background: rgba(255,255,255,0.08);
+    padding: 40px 32px;
+    transition: background .3s;
+  }
+  .art-tile:hover { background: rgba(255,255,255,0.14); }
+  .art-icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .art-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; }
+  .art-sub { font-size: .9rem; margin-top: 8px; line-height: 1.6; opacity: .8; }
+
+  /* ===== HOW TO REACH ===== */
+  .reach { background: #0D0700; }
+  .reach-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  }
+  .reach-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px; padding: 36px 28px;
+    transition: border-color .3s;
+  }
+  .reach-card:hover { border-color: var(--saffron); }
+  .reach-icon { font-size: 2.2rem; margin-bottom: 18px; }
+  .reach-mode { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 3px; color: var(--gold); }
+  .reach-info { margin-top: 12px; font-size: .95rem; line-height: 1.8; color: rgba(255,255,255,0.65); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--deep);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 48px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; letter-spacing: 4px; color: var(--gold);
+  }
+  .footer-text { font-size: .9rem; color: rgba(255,255,255,0.35); }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: .9rem; transition: color .3s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollLine {
+    0%,100% { opacity: .3; transform: scaleY(1); }
+    50%      { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s, transform .7s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 60px 24px; }
+    .about-strip { grid-template-columns: 1fr; }
+    .arts-grid { grid-template-columns: 1fr; }
+    .reach-cards { grid-template-columns: 1fr; }
+    footer { flex-direction: column; padding: 36px 24px; }
+    .hero { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Sambalpur</a>
+  <ul class="nav-links">
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#hotels">Hotels</a></li>
+    <li><a href="#food">Cuisine</a></li>
+    <li><a href="#festivals">Festivals</a></li>
+    <li><a href="#arts">Arts</a></li>
+    <li><a href="#reach">How to Reach</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Western Odisha, India</p>
+  <h1 class="hero-title">The <span>Soul</span> of<br>Sambalpur</h1>
+  <p class="hero-sub">Where the Mahanadi sings, ancient temples whisper legends, and the finest silk in Odisha is woven thread by golden thread.</p>
+  <a href="#destinations" class="hero-cta">Explore the District</a>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div class="about-text reveal">
+    <p class="section-label">About the District</p>
+    <h2 class="section-title" style="margin-bottom:24px;">A City of <em>Heritage</em> & Nature</h2>
+    <p>Sambalpur, located on the banks of the sacred Mahanadi river, is one of the most culturally rich districts of Odisha. Home to the legendary Hirakud Dam — one of the world's longest earthen dams — it seamlessly blends natural grandeur with centuries of history.</p>
+    <p>The district is celebrated globally for its Sambalpuri saree and Bomkai weave, revered for the Samaleswari temple, and admired for its vibrant folk traditions including the exuberant Sambalpuri dance.</p>
+  </div>
+  <div class="about-stats reveal">
+    <div class="stat-box">
+      <div class="stat-num">6,657</div>
+      <div class="stat-label">Area (sq. km)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">1.08M+</div>
+      <div class="stat-label">Population</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">60km</div>
+      <div class="stat-label">Length of Hirakud Dam</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">743m</div>
+      <div class="stat-label">Above Sea Level (Avg.)</div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations" id="destinations">
+  <div class="reveal">
+    <p class="section-label">Places to Visit</p>
+    <h2 class="section-title">Top 10 <em>Destinations</em></h2>
+  </div>
+  <div class="dest-grid">
+
+    <div class="dest-card reveal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Hirakud_dam_sunset.jpg/800px-Hirakud_dam_sunset.jpg" alt="Hirakud Dam">
+      <div class="dest-num">01</div>
+      <div class="dest-info">
+        <div class="dest-name">Hirakud Dam</div>
+        <span class="dest-tag">Engineering Marvel</span>
+        <p class="dest-desc">World's longest earthen dam; stunning sunsets & boating on the Mahanadi reservoir.</p>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Samaleswari_Temple.jpg/800px-Samaleswari_Temple.jpg" alt="Samaleswari Temple" onerror="this.src='https://images.unsplash.com/photo-1599422314077-f4dfdaa4cd09?w=600'">
+      <div class="dest-num">02</div>
+      <div class="dest-info">
+        <div class="dest-name">Samaleswari Temple</div>
+        <span class="dest-tag">Sacred Shrine</span>
+        <p class="dest-desc">The presiding deity of Sambalpur, Goddess Samalei, revered by millions across Odisha.</p>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Debrigarh_Wildlife_Sanctuary.jpg/800px-Debrigarh_Wildlife_Sanctuary.jpg" alt="Debrigarh" onerror="this.src='https://images.unsplash.com/photo-1448375240586-882707db888b?w=600'">
+      <div class="dest-num">03</div>
+      <div class="dest-info">
+        <div class="dest-name">Debrigarh Wildlife Sanctuary</div>
+        <span class="dest-tag">Nature Reserve</span>
+        <p class="dest-desc">Dense forest teeming with leopards, hyenas, and over 200 bird species around Hirakud.</p>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600" alt="Huma Temple" onerror="this.src='https://images.unsplash.com/photo-1612810806695-30f7a8258391?w=600'">
+      <div class="dest-num">04</div>
+      <div class="dest-info">
+        <div class="dest-name">Huma Temple</div>
+        <span class="dest-tag">Leaning Temple</span>
+        <p class="dest-desc">The only "leaning temple" of India, dedicated to Lord Shiva and perched on the Mahanadi bank.</p>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600" alt="Ushakothi">
+      <div class="dest-num">05</div>
+      <div class="dest-info">
+        <div class="dest-name">Ushakothi Wildlife Sanctuary</div>
+        <span class="dest-tag">Tiger Reserve</span>
+        <p class="dest-desc">Haunt of tigers and elephants; pristine sal forests draped in mist and birdsong.</p>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1519197924294-4ba991a11128?w=600" alt="Gandhamardan">
+      <div class="dest-num">06</div>
+      <div class="dest-info">
+        <div class="dest-name">Gandhamardan Hills</div>
+        <span class="dest-tag">Pilgrimage & Trek</span>
+        <p class="dest-desc">Mythologically famous hills believed to hold the medicinal herbs used by Hanuman.</p>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1552083974-186346191183?w=600" alt="Badrama">
+      <div class="dest-num">07</div>
+      <div class="dest-info">
+        <div class="dest-name">Badrama Wildlife Sanctuary</div>
+        <span class="dest-tag">Eco Tourism</span>
+        <p class="dest-desc">A quiet gem for birdwatchers and nature lovers exploring Western Odisha's forests.</p>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600" alt="Sambalpur City">
+      <div class="dest-num">08</div>
+      <div class="dest-info">
+        <div class="dest-name">Sambalpur City Market</div>
+        <span class="dest-tag">Culture & Shopping</span>
+        <p class="dest-desc">Vibrant bazaars selling Sambalpuri sarees, Bomkai silk, and traditional silver jewellery.</p>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1614258495942-b0d3dd7c1b3a?w=600" alt="Nrusinghanath">
+      <div class="dest-num">09</div>
+      <div class="dest-info">
+        <div class="dest-name">Nrusinghanath Temple</div>
+        <span class="dest-tag">Ancient Temple</span>
+        <p class="dest-desc">A 14th-century temple nestled in the Gandhamardan foothills, devoted to Lord Nrusingha.</p>
+      </div>
+    </div>
+
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1598539716977-0a6bef2e5c4c?w=600" alt="Bargarh Weaving">
+      <div class="dest-num">10</div>
+      <div class="dest-info">
+        <div class="dest-name">Bargarh Weaving Villages</div>
+        <span class="dest-tag">Craft Heritage</span>
+        <p class="dest-desc">Watch master weavers create world-renowned Ikat textiles in centuries-old handloom workshops.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section class="hotels" id="hotels">
+  <div class="reveal">
+    <p class="section-label">Where to Stay</p>
+    <h2 class="section-title">Top 10 <em>Hotels</em></h2>
+  </div>
+  <div class="hotel-list reveal">
+    <div class="hotel-row">
+      <div class="hotel-rank">01</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Sonepur Tourism Hotel (OTDC)</div>
+        <div class="hotel-addr">Near Hirakud Dam, Sambalpur</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★★</div>
+        <div class="hotel-type">Government Tourist Lodge</div>
+      </div>
+    </div>
+    <div class="hotel-row">
+      <div class="hotel-rank">02</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Punj Hospitality — Hotel Surya</div>
+        <div class="hotel-addr">Budharaja, Sambalpur</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★★</div>
+        <div class="hotel-type">Business Hotel</div>
+      </div>
+    </div>
+    <div class="hotel-row">
+      <div class="hotel-rank">03</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Hotel Uptown Grand</div>
+        <div class="hotel-addr">Ainthapali, Sambalpur</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★★</div>
+        <div class="hotel-type">Luxury Hotel</div>
+      </div>
+    </div>
+    <div class="hotel-row">
+      <div class="hotel-rank">04</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Hotel Silver Inn</div>
+        <div class="hotel-addr">Khetrajpur Road, Sambalpur</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★</div>
+        <div class="hotel-type">Mid-Range</div>
+      </div>
+    </div>
+    <div class="hotel-row">
+      <div class="hotel-rank">05</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Hotel Regency</div>
+        <div class="hotel-addr">Court Road, Sambalpur City</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★</div>
+        <div class="hotel-type">City Hotel</div>
+      </div>
+    </div>
+    <div class="hotel-row">
+      <div class="hotel-rank">06</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Hotel Sai International</div>
+        <div class="hotel-addr">NH-55, Sambalpur</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★</div>
+        <div class="hotel-type">Highway Hotel</div>
+      </div>
+    </div>
+    <div class="hotel-row">
+      <div class="hotel-rank">07</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Mahanadi Resort</div>
+        <div class="hotel-addr">Hirakud Dam Backwaters</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★★</div>
+        <div class="hotel-type">Riverside Resort</div>
+      </div>
+    </div>
+    <div class="hotel-row">
+      <div class="hotel-rank">08</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Panthanivas Sambalpur (OTDC)</div>
+        <div class="hotel-addr">Budharaja, Sambalpur</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★</div>
+        <div class="hotel-type">State Tourism Lodge</div>
+      </div>
+    </div>
+    <div class="hotel-row">
+      <div class="hotel-rank">09</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Hotel Green Park</div>
+        <div class="hotel-addr">Sambalpur Ring Road</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★</div>
+        <div class="hotel-type">Budget Comfort</div>
+      </div>
+    </div>
+    <div class="hotel-row">
+      <div class="hotel-rank">10</div>
+      <div class="hotel-main">
+        <div class="hotel-name">Hotel Heritage Inn</div>
+        <div class="hotel-addr">Old Town, Sambalpur</div>
+      </div>
+      <div class="hotel-right">
+        <div class="hotel-stars">★★★</div>
+        <div class="hotel-type">Heritage Stay</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUISINE -->
+<section class="food" id="food">
+  <div class="reveal">
+    <p class="section-label" style="color:var(--rust);">Local Delicacies</p>
+    <h2 class="section-title" style="color:var(--deep);">Flavours of <em style="color:var(--rust);">Sambalpur</em></h2>
+  </div>
+  <div class="food-grid">
+    <div class="food-card reveal"><div class="food-icon">🍚</div><div class="food-name">Pakhala</div><div class="food-desc">Fermented rice soaked in water, served with fried fish, roasted papad, and saga bhaja — a staple of Odia life.</div></div>
+    <div class="food-card reveal"><div class="food-icon">🐟</div><div class="food-name">Mahanadi Rohu Curry</div><div class="food-desc">Fresh rohu from the Mahanadi cooked in mustard gravy with aromatic local spices.</div></div>
+    <div class="food-card reveal"><div class="food-icon">🍬</div><div class="food-name">Chhena Poda</div><div class="food-desc">Odisha's signature burnt cheesecake — caramelized cottage cheese baked to perfection with cardamom.</div></div>
+    <div class="food-card reveal"><div class="food-icon">🫙</div><div class="food-name">Badi Chura</div><div class="food-desc">Crumbled sun-dried lentil dumplings mixed with onion, green chilli, and mustard oil — a beloved snack.</div></div>
+    <div class="food-card reveal"><div class="food-icon">🌿</div><div class="food-name">Maandiya</div><div class="food-desc">Ragi (finger millet) porridge, a traditional health drink of the tribal heartland, lightly sweetened.</div></div>
+    <div class="food-card reveal"><div class="food-icon">🍮</div><div class="food-name">Arisa Pitha</div><div class="food-desc">Rice flour pancakes sweetened with jaggery and deep fried — a festive favourite during Nuakhai.</div></div>
+    <div class="food-card reveal"><div class="food-icon">🥘</div><div class="food-name">Dalma</div><div class="food-desc">Lentils slow-cooked with seasonal vegetables, tempered with cumin and dried chillis — soul food of Odisha.</div></div>
+    <div class="food-card reveal"><div class="food-icon">🌶️</div><div class="food-name">Chakta</div><div class="food-desc">A tangy raw papaya & raw mango salad with mustard and chilli — sharp, refreshing, uniquely Sambalpuri.</div></div>
+  </div>
+</section>
+
+<!-- FESTIVALS -->
+<section class="festivals" id="festivals">
+  <div class="reveal">
+    <p class="section-label">Celebrations</p>
+    <h2 class="section-title">Festivals of <em>Sambalpur</em></h2>
+  </div>
+  <div class="fest-grid">
+    <div class="fest-card reveal">
+      <div class="fest-month">September</div>
+      <div class="fest-name">Nuakhai Juhar</div>
+      <div class="fest-desc">Odisha's most beloved harvest festival where new rice is first offered to Goddess Samaleswari before being consumed by the family.</div>
+    </div>
+    <div class="fest-card reveal">
+      <div class="fest-month">January</div>
+      <div class="fest-name">Sambalpur Sambalpuri Mahotsav</div>
+      <div class="fest-desc">A vibrant cultural extravaganza showcasing folk dances like Sambalpuri, Dalkhai, Rasarkeli, and Karma nacha.</div>
+    </div>
+    <div class="fest-card reveal">
+      <div class="fest-month">March – April</div>
+      <div class="fest-name">Sitalsasthi</div>
+      <div class="fest-desc">The grand marriage procession of Lord Shiva and Goddess Parvati — celebrated with elaborate tableaux across the city streets.</div>
+    </div>
+    <div class="fest-card reveal">
+      <div class="fest-month">October</div>
+      <div class="fest-name">Durga Puja</div>
+      <div class="fest-desc">Elaborate pandals and processions fill Sambalpur with colour; the city's Devi Mandaps are famous throughout Western Odisha.</div>
+    </div>
+    <div class="fest-card reveal">
+      <div class="fest-month">November</div>
+      <div class="fest-name">Diwali & Kali Puja</div>
+      <div class="fest-desc">A festival of lights along the Mahanadi's banks; tribal communities celebrate with fire rituals and folk music.</div>
+    </div>
+    <div class="fest-card reveal">
+      <div class="fest-month">January</div>
+      <div class="fest-name">Pous Sankranti</div>
+      <div class="fest-desc">Rice-harvest thanksgiving with Pitha-making competitions, folk theatre, and worship at household shrines at dawn.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTS -->
+<section class="arts" id="arts">
+  <div class="reveal">
+    <p class="section-label" style="color:var(--cream); opacity:.7;">Traditional Crafts</p>
+    <h2 class="section-title">Arts & <em style="color:#fff; font-style:italic;">Crafts</em></h2>
+  </div>
+  <div class="arts-grid reveal">
+    <div class="art-tile">
+      <div class="art-icon">🧵</div>
+      <div class="art-name">Sambalpuri Saree</div>
+      <div class="art-sub">World-famous Ikat-dyed handloom saree where threads are tie-dyed before weaving to create geometric patterns.</div>
+    </div>
+    <div class="art-tile">
+      <div class="art-icon">🥻</div>
+      <div class="art-name">Bomkai Silk</div>
+      <div class="art-sub">Luxurious extra-weft silk with tribal motifs — a GI-tagged textile treasured by connoisseurs worldwide.</div>
+    </div>
+    <div class="art-tile">
+      <div class="art-icon">💃</div>
+      <div class="art-name">Sambalpuri Dance</div>
+      <div class="art-sub">A spirited folk dance tradition with energetic footwork, vibrant costumes, and devotional themes.</div>
+    </div>
+    <div class="art-tile">
+      <div class="art-icon">🥁</div>
+      <div class="art-name">Dalkhai Folk Music</div>
+      <div class="art-sub">Percussion-driven folk songs sung by women during harvest festivals — raw, rhythmic, and mesmerising.</div>
+    </div>
+    <div class="art-tile">
+      <div class="art-icon">🪘</div>
+      <div class="art-name">Karma Dance</div>
+      <div class="art-sub">Tribal ritual dance performed around the Karma tree to honour the deity of fate and prosperity.</div>
+    </div>
+    <div class="art-tile">
+      <div class="art-icon">🖼️</div>
+      <div class="art-name">Tribal Jewellery & Dokra</div>
+      <div class="art-sub">Ancient lost-wax cast metalwork and silver tribal jewellery unique to the artisans of Western Odisha.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO REACH -->
+<section class="reach" id="reach">
+  <div class="reveal">
+    <p class="section-label">Travel Guide</p>
+    <h2 class="section-title">How to <em>Reach</em> Sambalpur</h2>
+  </div>
+  <div class="reach-cards reveal">
+    <div class="reach-card">
+      <div class="reach-icon">✈️</div>
+      <div class="reach-mode">By Air</div>
+      <div class="reach-info">
+        The nearest airport is <strong>Veer Surendra Sai Airport, Jharsuguda (JRG)</strong>, just 55 km away. Connected to Kolkata, Hyderabad, and Raipur. Bhubaneswar (BBI) is 360 km — the largest hub in Odisha.
+      </div>
+    </div>
+    <div class="reach-card">
+      <div class="reach-icon">🚆</div>
+      <div class="reach-mode">By Train</div>
+      <div class="reach-info">
+        <strong>Sambalpur Railway Station</strong> and <strong>Sambalpur Road Station</strong> are well-connected. Major trains like Ispat Express (Bhubaneswar–Mumbai), Hirakhand Express, and Shatabdi connect it to Bhubaneswar, Kolkata, and Delhi.
+      </div>
+    </div>
+    <div class="reach-card">
+      <div class="reach-icon">🚗</div>
+      <div class="reach-mode">By Road</div>
+      <div class="reach-info">
+        Located on <strong>NH-55</strong> (Kolkata–Nagpur Highway). State buses and private vehicles connect Sambalpur to Bhubaneswar (320 km), Raipur (260 km), and Ranchi (340 km). Roads are scenic through Odisha's forests.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sambalpur</div>
+  <p class="footer-text">© 2025 · Discover the Heart of Western Odisha · India</p>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#hotels">Hotels</a></li>
+    <li><a href="#food">Cuisine</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Stagger card reveals
+  document.querySelectorAll('.dest-card.reveal, .food-card.reveal, .fest-card.reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 5) * 0.08}s`;
+  });
+</script>
+</body>
+</html>
